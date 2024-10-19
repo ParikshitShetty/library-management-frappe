@@ -15,6 +15,9 @@ from db.models import Books, Members, Transactions
 # Import Services
 from services.booksServices.importBooks import importBooks
 
+# Import Controllers
+from controllers.booksControllers.searchBooks import search_router
+
 create_database()
 
 app = FastAPI()
@@ -43,3 +46,6 @@ async def root():
 async def get_books(db: Session = Depends(get_db)):
     books = db.query(Books).all()
     return { "books":books }
+
+# Endpoint to Search
+app.include_router(search_router)
