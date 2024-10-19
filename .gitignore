@@ -1,5 +1,7 @@
 venv
 __pycache__
+*.db
+*.env
 
 # Logs
 logs
