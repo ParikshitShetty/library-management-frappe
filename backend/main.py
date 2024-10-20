@@ -14,9 +14,12 @@ from db.models import Books, Members, Transactions
 
 # Import Services
 from services.booksServices.importBooks import importBooks
+from services.membersServices.addInitMembers import add_members
 
 # Import Controllers
-from controllers.booksControllers.searchBooks import search_router
+from controllers.booksControllers.searchBooksController import search_router
+from controllers.booksControllers.issueBookController import issue_book_router
+from controllers.booksControllers.returnBookController import return_book_router
 
 create_database()
 
@@ -35,8 +38,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Import the files 
+# Import the books and add members 
 importBooks()
+add_members()
 
 @app.get("/")
 async def root():
@@ -47,5 +51,19 @@ async def get_books(db: Session = Depends(get_db)):
     books = db.query(Books).all()
     return { "books":books }
 
+@app.get("/members")
+async def get_books(db: Session = Depends(get_db)):
+    members = db.query(Members).all()
+    return { "members":members }
+
+@app.get("/transactions")
+async def get_books(db: Session = Depends(get_db)):
+    transactions = db.query(Transactions).all()
+    return { "transactions":transactions }
+
 # Endpoint to Search
 app.include_router(search_router)
+
+app.include_router(issue_book_router)
+
+app.include_router(return_book_router)
