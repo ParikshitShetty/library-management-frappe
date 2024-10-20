@@ -1,14 +1,27 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import { ErrorBoundary } from 'react-error-boundary'
+// Import Routes
+import Home from '@/routes/Home'
+import Members from '@/routes/Members'
+import Books from '@/routes/Books'
+// Error handler
+import FallbackComponent from '@/components/error/FallBackComponent'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div className='min-h-screen w-full bg-black text-white'>
-        Library
+      <div>
+        <ErrorBoundary 
+         FallbackComponent={FallbackComponent}
+        >
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/members' element={<Members />} />
+            <Route path='/books' element={<Books />} />
+            <Route path='*' element={<div>Route Not Found</div>} />
+          </Routes>
+        </ErrorBoundary>
       </div>
     </>
   )
