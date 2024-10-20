@@ -1,16 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { useSetAtom } from 'jotai';
 // Components
 import SidebarContainer from '@/components/layout/SidebarContainer'
+import MembersCollection from '@/components/ui/MembersCollection';
 // Services
 import getMembersService from '@/services/api/getMembersService'
+// Global States
+import { membersArrayState } from '@/store/store';
 
 function Members() {
-  const [members, setMembers] = useState([]);
+  const setMembers = useSetAtom(membersArrayState);
 
   async function getMembers() {
     const membersArray = await getMembersService();
     setMembers(membersArray)
-    console.log("membersArray",membersArray)
   }
   useEffect(() => {
     getMembers();
@@ -19,12 +22,7 @@ function Members() {
   return (
     <>
       < SidebarContainer>
-            Members
-        {members?.map((member) => (
-          <>
-            {member.name} <br />
-          </>
-        ))}
+        <MembersCollection />
       </SidebarContainer>
     </>
   )

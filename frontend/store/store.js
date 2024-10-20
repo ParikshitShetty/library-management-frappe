@@ -7,4 +7,8 @@ export const sidebarIndexState = atomWithStorage('sidebarIndex', 0, storage);
 
 export const booksArrayState = atom([]);
 
+export const membersArrayState = atom([]);
+
+export const transactionArrayState = atom([]);
+
 export const searchTextState = atom('');

@@ -5,7 +5,7 @@ import {
     booksArrayState, 
     searchTextState } from '@/store/store'
 //Utils 
-import { search } from '@/utils/search';
+import { searchBooks } from '@/utils/search';
 
 function BooksRenderer() {
     const books = useAtomValue(booksArrayState);
@@ -21,7 +21,7 @@ function BooksRenderer() {
             renderRef.current = true;
             return
         }
-        const searchResults = search({ original:books, searchText })
+        const searchResults = searchBooks({ books, searchText })
         setFilteredBooks(searchResults)
     },[searchText,books])
 

@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from 'react'
+import { useSetAtom } from 'jotai';
 // Components
 import SidebarContainer from '@/components/layout/SidebarContainer'
+import TransactionCollection from '@/components/ui/TransactionCollection';
 // Services
-import getTransactionsService from '@/services/api/getTransactionsService'
+import getTransactionsService from '@/services/api/getTransactionsService';
+// Global States
+import { transactionArrayState } from '@/store/store';
+
 function Transactions() {
-  const [transactions,setTransactions] = useState([]);
+  const setTransactions = useSetAtom(transactionArrayState);
 
   async function getTransactions () {
     const transactionsArray = await getTransactionsService();
-    setTransactions(transactionsArray)
-    console.log("transactionsArray",transactionsArray)
+    setTransactions(transactionsArray);
   }
   useEffect(() => {
     getTransactions()
@@ -18,12 +22,7 @@ function Transactions() {
   return (
     <>
         <SidebarContainer>
-            Transactions
-            {transactions?.map((transaction) => (
-          <>
-            {transaction.book_id} <br />
-          </>
-        ))}
+          <TransactionCollection />
         </SidebarContainer>
     </>
   )

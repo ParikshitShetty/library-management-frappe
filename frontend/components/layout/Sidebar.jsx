@@ -1,4 +1,4 @@
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 // Icons
@@ -7,7 +7,9 @@ import { IoPeopleSharp } from "react-icons/io5";
 import { ImBooks } from "react-icons/im";
 import { GrTransaction } from "react-icons/gr";
 // Global States
-import { sidebarIndexState } from '@/store/store';
+import { 
+    searchTextState, 
+    sidebarIndexState } from '@/store/store';
 
 const sidebarArray = [ 
     { name :'Home', link:'/', icon:FaHome },
@@ -18,11 +20,14 @@ const sidebarArray = [
 function Sidebar() {
     const [currentIndex, setCurrentIndex] = useAtom(sidebarIndexState);
 
+    const setSearchText = useSetAtom(searchTextState);
+
     const navigate = useNavigate();
 
     const navigator = ({content,index}) => {
         setCurrentIndex(index);
-        navigate(content.link)
+        navigate(content.link);
+        setSearchText('');
     }
   return (
     <>
