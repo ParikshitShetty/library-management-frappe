@@ -5,7 +5,7 @@ import SidebarContainer from '@/components/layout/SidebarContainer'
 function Home() {
   return (
     <>
-        < SidebarContainer>
+        <SidebarContainer>
             Home
         </SidebarContainer>
     </>

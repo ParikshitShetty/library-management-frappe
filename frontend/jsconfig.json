@@ -9,6 +9,7 @@
 			"@/services/*": ["./services/*"],
 			"@/utils/*": ["./utils/*"],
             "@/public":["./public/*"],
+            "@/constants":["./constants"]
         }
     }
 }

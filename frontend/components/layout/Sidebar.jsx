@@ -8,6 +8,7 @@ const sidebarArray = [
     { name :'Home', link:'/' },
     { name :'Members', link:'/members' },
     { name :'Books', link:'/books' },
+    { name :'Transactions', link:'/transactions' },
 ]
 function Sidebar() {
     const [currentIndex, setCurrentIndex] = useAtom(sidebarIndexState);

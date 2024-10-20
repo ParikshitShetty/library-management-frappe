@@ -16,7 +16,8 @@ export default defineConfig({
 			"@/store": "/store",
 			"@/services": "/services",
 			"@/utils": "/utils",
-      "@/public":"/public",
+      "@/public": "/public",
+      "@/constants": "/constants"
     }
   }
 })
