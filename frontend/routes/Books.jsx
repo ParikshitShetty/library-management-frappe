@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useAtom } from 'jotai';
 // Components
 import SidebarContainer from '@/components/layout/SidebarContainer'

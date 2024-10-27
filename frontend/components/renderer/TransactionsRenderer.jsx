@@ -3,7 +3,7 @@ import React from 'react';
 // Global States
 import { transactionArrayState } from '@/store/store';
 // Utils
-import { getDate } from '@/utils/date';
+import { getDate } from '@/utils/date/date';
 
 function TransactionRenderer() {
   const transactions = useAtomValue(transactionArrayState);

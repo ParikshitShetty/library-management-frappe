@@ -5,7 +5,7 @@ import {
     membersArrayState, 
     searchTextState } from '@/store/store';
 // Utils
-import { searchMembers } from '@/utils/search';
+import { searchMembers } from '@/utils/search/search';
 
 function MembersRenderer() {
     const members = useAtomValue(membersArrayState);

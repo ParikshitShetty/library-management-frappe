@@ -12,3 +12,5 @@ export const membersArrayState = atom([]);
 export const transactionArrayState = atom([]);
 
 export const searchTextState = atom('');
+
+export const popUpState = atom(true);

@@ -13,12 +13,13 @@ function BooksCollection() {
             <header className='text-center text-2xl font-bold'>Books List</header>
           </div>
           <div className='w-full h-full flex flex-col justify-center items-center'>
-            <div className='w-full h-auto flex justify-around items-center py-4 shadow-2xl'>
-              <span className='w-[40%] font-bold'>Title</span>
-              <span className='w-[15%] font-bold'>Average Rating</span>
-              <span className='w-[15%] font-bold'>Authors</span>
-              <span className='w-[20%] font-bold'>Publisher</span>
-              <span className='w-[10%] font-bold'>Copies Available</span>
+            <div className='w-full h-auto flex justify-around items-center py-4 shadow-2xl text-start'>
+              <span className='w-[35vw] font-bold'>Title</span>
+              <span className='w-[10vw] font-bold'>Average Rating</span>
+              <span className='w-[20vw] font-bold'>Authors</span>
+              <span className='w-[15vw] font-bold'>Publisher</span>
+              <span className='w-[10vw] font-bold'>Copies Available</span>
+              <span className='w-[10vw] font-bold'>Issue Book</span>
             </div>
             <BooksRenderer />
           </div>
