@@ -8,8 +8,9 @@
 			"@/store/*": ["./store/*"],
 			"@/services/*": ["./services/*"],
 			"@/utils/*": ["./utils/*"],
-            "@/public":["./public/*"],
-            "@/constants":["./constants"]
+            "@/public/*":["./public/*"],
+            "@/constants/*":["./constants/*"],
+            "@/hooks/*": ["./hooks/*"],
         }
     }
 }

@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '@mui/material/Button';
+import { useAtom } from 'jotai';
 // Components
-import SidebarContainer from '@/components/layout/SidebarContainer'
-import PopupComponent from '@/components/popup/PopupComponent'
+import SidebarContainer from '@/components/layout/SidebarContainer';
+// Global States
+import { popUpState } from '@/store/store';
 
 function Home() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useAtom(popUpState);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -34,7 +36,6 @@ function Home() {
                 Return a Book
               </Button>
             </div>
-            <PopupComponent open={open} handleClose={handleClose} />
           </main>
         </SidebarContainer>
     </>

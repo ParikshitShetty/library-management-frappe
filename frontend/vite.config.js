@@ -17,7 +17,8 @@ export default defineConfig({
 			"@/services": "/services",
 			"@/utils": "/utils",
       "@/public": "/public",
-      "@/constants": "/constants"
+      "@/constants": "/constants",
+      "@/hooks": "/hooks",
     }
   }
 })

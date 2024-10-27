@@ -13,4 +13,8 @@ export const transactionArrayState = atom([]);
 
 export const searchTextState = atom('');
 
-export const popUpState = atom(true);
+export const popUpState = atom(false);
+
+export const selectedBookObjState = atom({});
+
+export const selectedMemberObjState = atom({});

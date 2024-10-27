@@ -6,11 +6,11 @@ import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { 
     booksArrayState, 
     popUpState, 
-    searchTextState } from '@/store/store'
+    searchTextState, 
+    selectedBookObjState,
+    selectedMemberObjState,} from '@/store/store'
 //Utils 
 import { searchBooks } from '@/utils/search/search';
-// Components
-import PopupComponent from '@/components/popup/PopupComponent'
 
 function BooksRenderer() {
     const books = useAtomValue(booksArrayState);
@@ -23,16 +23,23 @@ function BooksRenderer() {
 
     const [open, setOpen] = useAtom(popUpState);
 
+    const [selectedBookObj,setSelectedBookObj] = useAtom(selectedBookObjState);
+
+    const [selectedMemberObj,setSelectedMemberObj] = useAtom(selectedMemberObjState);
+    
+
     useEffect(() => {
-        if (!renderRef.current) {
-            renderRef.current = true;
-            return
-        }
-        const searchResults = searchBooks({ books, searchText })
-        setFilteredBooks(searchResults)
+      if (!renderRef.current) {
+          renderRef.current = true;
+          return
+      }
+      const searchResults = searchBooks({ books, searchText })
+      setFilteredBooks(searchResults)
     },[searchText,books])
 
-    const handleClickOpen = () => {
+    const handleClickOpen = (book) => {
+      setSelectedBookObj(book);
+      setSelectedMemberObj({});
       setOpen(true);
     };
   return (
@@ -48,14 +55,13 @@ function BooksRenderer() {
                 <span className='w-[15vw] text-wrap mx-2'>{book.publisher}</span>
                 <span className='w-[10vw] text-wrap'>{book.copies_available}</span>
                 <span className='w-[10vw] font-bold cursor-pointer'
-                  onClick={handleClickOpen}
+                  onClick={() => handleClickOpen(book)}
                 >
                   <IoArrowForwardCircleOutline className='size-7' />
                 </span>
               </div>      
             ))}  
         </div>
-        <PopupComponent/>
     </>
   )
 }
