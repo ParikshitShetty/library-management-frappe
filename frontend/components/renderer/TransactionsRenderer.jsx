@@ -18,7 +18,7 @@ function TransactionRenderer() {
                 <span className='w-[10%] text-wrap'>{transaction.member_id}</span>
                 <span className='w-[30%] text-wrap mx-2'>{getDate(transaction.issue_date)}</span>
                 <span className='w-[30%] text-wrap'>{getDate(transaction.return_date)}</span>
-                <span className='w-[20%] text-wrap mx-2'>{transaction.is_returned ? 'Yes' : 'Np'}</span>
+                <span className='w-[20%] text-wrap mx-2'>{transaction.is_returned ? 'Yes' : 'No'}</span>
               </div>      
             ))}  
         </div>

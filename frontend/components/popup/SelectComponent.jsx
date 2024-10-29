@@ -1,22 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { FormControl, Box, Select, MenuItem, InputLabel } from '@mui/material';
+import toast from 'react-hot-toast';
 
-export default function SelectComponent({ menu_items, label, intitalIndex }) {
+export default function SelectComponent({ menu_items, label, intitalIndex, setSelectedObj }) {
     const [dropdownValue, setDropdownValue] = useState(intitalIndex);
 
     useEffect(() => {
-      if (intitalIndex) {
-        setDropdownValue(intitalIndex);
-        // const eventValueObj = menu_items[intitalIndex] ?? {};
-        // const val = label === 'Books' ? eventValueObj.title : eventValueObj.name;
-      }
+      if (intitalIndex) setDropdownValue(intitalIndex);
     },[])
   
     const handleChange = (event) => {
       setDropdownValue(event.target.value);
       const eventValueObj = menu_items[event.target.value];
-      const val = label === 'Books' ? eventValueObj.title : eventValueObj.name;
-      console.log("val",val)
+      if (label === 'Books' && eventValueObj.copies_available <= 0) {
+        toast('Book is out of stock please select another');
+        setDropdownValue(intitalIndex);
+        setSelectedObj({});
+        return;
+      }
+
+      if (label === 'Members' && eventValueObj.outstanding_debt >= 500){
+        toast('Please clear the outstanding debt to proceed');
+        setDropdownValue(intitalIndex);
+        setSelectedObj({});
+        return;
+      }
+      setSelectedObj(eventValueObj);
     };
   
     return (

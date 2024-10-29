@@ -18,3 +18,5 @@ export const popUpState = atom(false);
 export const selectedBookObjState = atom({});
 
 export const selectedMemberObjState = atom({});
+
+export const issueBookState = atom(true);

@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { useAtom, useAtomValue } from 'jotai'
+import React, { useEffect, useState } from 'react';
+import { useAtomValue, useSetAtom } from 'jotai';
+import toast from 'react-hot-toast';
 // Icons
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
 // Global States
@@ -17,27 +18,21 @@ function BooksRenderer() {
 
     const searchText = useAtomValue(searchTextState);
 
-    const renderRef = useRef(false);
-
     const [filteredBooks,setFilteredBooks] = useState([]);
 
-    const [open, setOpen] = useAtom(popUpState);
+    const setOpen = useSetAtom(popUpState);
 
-    const [selectedBookObj,setSelectedBookObj] = useAtom(selectedBookObjState);
+    const setSelectedBookObj = useSetAtom(selectedBookObjState);
 
-    const [selectedMemberObj,setSelectedMemberObj] = useAtom(selectedMemberObjState);
-    
+    const setSelectedMemberObj = useSetAtom(selectedMemberObjState);
 
     useEffect(() => {
-      if (!renderRef.current) {
-          renderRef.current = true;
-          return
-      }
       const searchResults = searchBooks({ books, searchText })
       setFilteredBooks(searchResults)
     },[searchText,books])
 
     const handleClickOpen = (book) => {
+      if ( book.copies_available <= 0) return toast.error('We ran out of books');
       setSelectedBookObj(book);
       setSelectedMemberObj({});
       setOpen(true);

@@ -5,11 +5,11 @@ import TransactionRenderer from '../renderer/TransactionsRenderer'
 function TransactionCollection() {
   return (
     <>
-        <main className='min-h-screen w-11/12 text-start'>
+        <main className='h-[90vh] w-11/12 text-start flex flex-col justify-start items-start'>
           <div className='w-full flex justify-center items-center relative h-[10vh]'>
             <header className='text-center text-2xl font-bold'>Transactions</header>
           </div>
-          <div className='w-full h-full flex flex-col justify-center items-center'>
+          <div className='w-full h-full flex flex-col justify-start items-center'>
             <div className='w-full h-auto flex justify-around items-center py-4 shadow-2xl'>
               <span className='w-[10%] font-bold'>Book Id</span>
               <span className='w-[10%] font-bold'>Member Id</span>

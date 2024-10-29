@@ -1,7 +1,8 @@
-import { useAtom, useAtomValue } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import React, { useEffect, useRef, useState } from 'react';
 // Global States
 import { 
+  issueBookState,
     membersArrayState, 
     popUpState, 
     searchTextState, 
@@ -9,7 +10,7 @@ import {
     selectedMemberObjState} from '@/store/store';
 // Utils
 import { searchMembers } from '@/utils/search/search';
-import { IoArrowForwardCircleOutline } from 'react-icons/io5';
+import { IoArrowForwardCircleOutline, IoArrowBackCircleOutline } from 'react-icons/io5';
 
 function MembersRenderer() {
     const members = useAtomValue(membersArrayState);
@@ -26,6 +27,8 @@ function MembersRenderer() {
 
     const [selectedMemberObj,setSelectedMemberObj] = useAtom(selectedMemberObjState);
 
+  const setIssueType = useSetAtom(issueBookState);
+
     useEffect(() => {
         if (!renderRef.current) {
             renderRef.current = true;
@@ -35,7 +38,8 @@ function MembersRenderer() {
         setFilteredMembers(searchResults)
     },[searchText,members])
 
-    const handleClickOpen = (member) => {
+    const handleClickOpen = (member,issueType) => {
+      setIssueType(issueType)
       setSelectedMemberObj(member);
       setSelectedBookObj({});
       setOpen(true);
@@ -53,9 +57,14 @@ function MembersRenderer() {
                 <span className='w-[30%] text-wrap mx-2'>{member.email}</span>
                 <span className='w-[20%] text-wrap mx-2'>{member.outstanding_debt}</span>
                 <span className='w-[10vw] font-bold cursor-pointer'
-                  onClick={() => handleClickOpen(member)}
+                  onClick={() => handleClickOpen(member,true)}
                 >
                   <IoArrowForwardCircleOutline className='size-7' />
+                </span>
+                <span className='w-[10vw] font-bold cursor-pointer'
+                  onClick={() => handleClickOpen(member,false)}
+                >
+                  <IoArrowBackCircleOutline className='size-7' />
                 </span>
               </div>      
             ))}  

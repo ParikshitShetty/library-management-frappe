@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 import { FaHome } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
 import { ImBooks } from "react-icons/im";
-import { GrTransaction } from "react-icons/gr";
 // Global States
 import { 
     searchTextState, 
@@ -15,7 +14,6 @@ const sidebarArray = [
     { name :'Home', link:'/', icon:FaHome },
     { name :'Members', link:'/members', icon:IoPeopleSharp },
     { name :'Books', link:'/books', icon:ImBooks },
-    { name :'Transactions', link:'/transactions', icon:GrTransaction },
 ]
 function Sidebar() {
     const [currentIndex, setCurrentIndex] = useAtom(sidebarIndexState);

@@ -2,11 +2,11 @@ import React, { useEffect, useRef } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { ErrorBoundary } from 'react-error-boundary'
 import { useSetAtom } from 'jotai'
+import { Toaster } from 'react-hot-toast'
 // Import Routes
 import Home from '@/routes/Home'
 import Members from '@/routes/Members'
 import Books from '@/routes/Books'
-import Transactions from '@/routes/Transactions'
 // Import Components
 import PopupComponent from '@/components/popup/PopupComponent'
 // Error handler
@@ -52,10 +52,10 @@ function App() {
             <Route path='/' element={<Home />} />
             <Route path='/members' element={<Members />} />
             <Route path='/books' element={<Books />} />
-            <Route path='/transactions' element={<Transactions />} />
             <Route path='*' element={<div>Route Not Found</div>} />
           </Routes>
           <PopupComponent/>
+          <Toaster />
         </ErrorBoundary>
       </div>
     </>
