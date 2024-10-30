@@ -6,6 +6,7 @@ import { IoArrowForwardCircleOutline } from "react-icons/io5";
 // Global States
 import { 
     booksArrayState, 
+    issueBookState, 
     popUpState, 
     searchTextState, 
     selectedBookObjState,
@@ -26,6 +27,8 @@ function BooksRenderer() {
 
     const setSelectedMemberObj = useSetAtom(selectedMemberObjState);
 
+    const setIssueType = useSetAtom(issueBookState);
+
     useEffect(() => {
       const searchResults = searchBooks({ books, searchText })
       setFilteredBooks(searchResults)
@@ -36,6 +39,7 @@ function BooksRenderer() {
       setSelectedBookObj(book);
       setSelectedMemberObj({});
       setOpen(true);
+      setIssueType(true);
     };
   return (
     <>

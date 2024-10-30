@@ -1,16 +1,11 @@
-from fastapi import FastAPI, Depends, HTTPException
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
-import requests
-from datetime import datetime
-import os
 from dotenv import load_dotenv
 
 # Load Environment variable
 load_dotenv()
 
-from db.database import create_database, get_db
-from db.models import Books, Members, Transactions
+from db.database import create_database
 
 # Import Services
 from services.booksServices.importBooks import importBooks
@@ -20,6 +15,13 @@ from services.membersServices.addInitMembers import add_members
 from controllers.booksControllers.searchBooksController import search_router
 from controllers.booksControllers.issueBookController import issue_book_router
 from controllers.booksControllers.returnBookController import return_book_router
+from controllers.booksControllers.importBooksController import import_books_router
+from controllers.booksControllers.listBooksController import list_books_router
+
+from controllers.transactionsControllers.listTransactionsController import list_transactions_router
+
+from controllers.membersControllers.membersWithIssuedBooks import member_with_issued_books_router
+from controllers.membersControllers.listMembersController import list_members_router
 
 create_database()
 
@@ -44,26 +46,20 @@ add_members()
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
-
-@app.get("/books")
-async def get_books(db: Session = Depends(get_db)):
-    books = db.query(Books).all()
-    return { "books":books }
-
-@app.get("/members")
-async def get_books(db: Session = Depends(get_db)):
-    members = db.query(Members).all()
-    return { "members":members }
-
-@app.get("/transactions")
-async def get_books(db: Session = Depends(get_db)):
-    transactions = db.query(Transactions).all()
-    return { "transactions":transactions }
+    return {"message": "Api is working"}
 
 # Endpoint to Search
 app.include_router(search_router)
 
+# Books Controllers
 app.include_router(issue_book_router)
-
 app.include_router(return_book_router)
+app.include_router(import_books_router)
+app.include_router(list_books_router)
+
+# Transactions Controllers
+app.include_router(list_transactions_router)
+
+# Members Controllers
+app.include_router(list_members_router)
+app.include_router(member_with_issued_books_router)

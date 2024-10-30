@@ -1,16 +1,21 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import React, { useEffect, useRef, useState } from 'react';
+import toast from 'react-hot-toast';
+import axios from 'axios';
 // Global States
 import { 
   issueBookState,
     membersArrayState, 
     popUpState, 
+    returnBooksState, 
     searchTextState, 
     selectedBookObjState, 
     selectedMemberObjState} from '@/store/store';
 // Utils
 import { searchMembers } from '@/utils/search/search';
+// Icons
 import { IoArrowForwardCircleOutline, IoArrowBackCircleOutline } from 'react-icons/io5';
+import { endpoints } from '@/constants/endpoints';
 
 function MembersRenderer() {
     const members = useAtomValue(membersArrayState);
@@ -27,7 +32,9 @@ function MembersRenderer() {
 
     const [selectedMemberObj,setSelectedMemberObj] = useAtom(selectedMemberObjState);
 
-  const setIssueType = useSetAtom(issueBookState);
+    const setReturnBooksArray = useSetAtom(returnBooksState);
+
+    const setIssueType = useSetAtom(issueBookState);
 
     useEffect(() => {
         if (!renderRef.current) {
@@ -38,8 +45,25 @@ function MembersRenderer() {
         setFilteredMembers(searchResults)
     },[searchText,members])
 
+    const getUserInfo = async(member) => {
+      try {
+        const url = endpoints.get_member_trnsactions;
+        const body = {
+          "member_id" : member.id
+        }
+        const response = await axios.post(url,body);
+        setReturnBooksArray(response.data.books);
+      } catch (error) {
+        console.error('Error while getting User Info:',error);
+      }
+    }
+
     const handleClickOpen = (member,issueType) => {
-      setIssueType(issueType)
+      if(member.books_issued <= 0){
+        return toast('No books have been issued to this member'); 
+      }
+      setIssueType(issueType);
+      getUserInfo(member)
       setSelectedMemberObj(member);
       setSelectedBookObj({});
       setOpen(true);

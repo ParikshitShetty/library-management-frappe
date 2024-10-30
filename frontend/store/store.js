@@ -20,3 +20,7 @@ export const selectedBookObjState = atom({});
 export const selectedMemberObjState = atom({});
 
 export const issueBookState = atom(true);
+
+export const returnBooksState = atom([]);
+
+export const currentDateState = atom('');

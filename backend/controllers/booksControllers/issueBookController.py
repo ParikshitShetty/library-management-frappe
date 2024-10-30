@@ -35,6 +35,10 @@ async def issue_Book(request: RequestData):
             "copies_available" : books[0].to_dict()['copies_available'] - 1
         })
 
+        db.query(Members).where(Members.id == request.member_id).update({
+            "books_issued" : members[0].books_issued + 1
+        })
+        
         db.add(transaction)
         db.commit()
 

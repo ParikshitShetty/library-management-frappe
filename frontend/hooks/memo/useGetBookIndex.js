@@ -6,6 +6,6 @@ export default function useGetBookIndex ({ selectedBookObj, books}){
           const index = books.findIndex(book => book.title === selectedBookObj.title);
           return index;
         } else return books.length;
-    },[selectedBookObj]);
+    },[selectedBookObj,books]);
     return bookIndex;
 }

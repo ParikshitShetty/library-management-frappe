@@ -43,6 +43,7 @@ class Members(Base):
     email = Column(String, unique=True, nullable=False)
     phone = Column(String, unique=True, nullable=True)
     outstanding_debt = Column(Float, default=0.0)
+    books_issued = Column(Integer, default=0)
     
     def to_dict(self):
         return {
@@ -51,6 +52,7 @@ class Members(Base):
             "email": self.email,
             "phone": self.phone,
             "outstanding_debt": self.outstanding_debt,
+            "books_issued": self.books_issued,
         }
         
 class Transactions(Base):
