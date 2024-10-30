@@ -24,3 +24,7 @@ export const issueBookState = atom(true);
 export const returnBooksState = atom([]);
 
 export const currentDateState = atom('');
+
+export const transactionCompletedState = atom(false);
+
+export const openSortPopupState = atom(false);

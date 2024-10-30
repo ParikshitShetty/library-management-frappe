@@ -47,7 +47,7 @@ function MembersRenderer() {
 
     const getUserInfo = async(member) => {
       try {
-        const url = endpoints.get_member_trnsactions;
+        const url = endpoints.get_member_transactions;
         const body = {
           "member_id" : member.id
         }

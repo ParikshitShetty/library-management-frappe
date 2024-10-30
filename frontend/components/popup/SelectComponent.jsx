@@ -1,13 +1,30 @@
 import React, { useEffect, useState } from 'react'
-import { useAtomValue } from 'jotai';
+import { useAtomValue, useSetAtom } from 'jotai';
 import { FormControl, Box, Select, MenuItem, InputLabel } from '@mui/material';
+import axios from 'axios';
 import toast from 'react-hot-toast';
-import { issueBookState } from '@/store/store';
+import { issueBookState, returnBooksState } from '@/store/store';
+import { endpoints } from '@/constants/endpoints';
 
 export default function SelectComponent({ menu_items, label, intitalIndex, setSelectedObj }) {
     const [dropdownValue, setDropdownValue] = useState(intitalIndex);
 
     const issueType = useAtomValue(issueBookState);
+
+    const setReturnBooksArray = useSetAtom(returnBooksState);
+
+    const getUserInfo = async(member) => {
+      try {
+        const url = endpoints.get_member_transactions;
+        const body = {
+          "member_id" : member.id
+        }
+        const response = await axios.post(url,body);
+        setReturnBooksArray(response.data.books);
+      } catch (error) {
+        console.error('Error while getting User Info:',error);
+      }
+    }
 
     useEffect(() => {
       if (intitalIndex) setDropdownValue(intitalIndex);
@@ -35,6 +52,9 @@ export default function SelectComponent({ menu_items, label, intitalIndex, setSe
     const returnHandleChange = (event) => {
       setDropdownValue(event.target.value);
       const eventValueObj = menu_items[event.target.value];
+      
+      if (label === 'Members' && !issueType) getUserInfo(eventValueObj);
+      console.log("returnBooksArray issueType")
       setSelectedObj(eventValueObj);
     }
   

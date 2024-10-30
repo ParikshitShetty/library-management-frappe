@@ -1,16 +1,34 @@
 import { useAtomValue } from 'jotai';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 // Global States
-import { transactionArrayState } from '@/store/store';
+import { 
+  openSortPopupState, 
+  transactionArrayState, 
+  transactionCompletedState } from '@/store/store';
 // Utils
 import { getDate } from '@/utils/date/date';
 
 function TransactionRenderer() {
+  const [filteredTransactions,setFilteredTransactions] = useState([]);
+
+  const openSortPopup = useAtomValue(openSortPopupState);
+
   const transactions = useAtomValue(transactionArrayState);
+
+  const transactionCompleted = useAtomValue(transactionCompletedState);
+
+  useEffect(() => {
+    if (openSortPopup) {
+      const updatedArray = transactions.filter(transaction => {
+        return transaction.is_returned === transactionCompleted
+      });
+      setFilteredTransactions(updatedArray);
+    } else setFilteredTransactions(transactions);
+  },[openSortPopup,transactionCompleted,transactions])
   return (
     <>
         <div className='h-auto max-h-[80vh] w-full overflow-hidden overflow-y-auto'> 
-            {transactions?.map((transaction,index) => (
+            {filteredTransactions?.map((transaction,index) => (
               <div className='w-full h-auto flex justify-around items-center my-1 py-1 border-t-2'
               key={index}
               >

@@ -112,8 +112,9 @@ export default function PopupComponent() {
   useEffect(() => {
     if (issueType) setBooksArray(books);
     else setBooksArray(returnBooksArray);
-  },[issueType])
+  },[issueType,books,returnBooksArray])
 
+  console.log("returnBooksArray",returnBooksArray)
   return (
     <>
       <Box>
@@ -122,7 +123,7 @@ export default function PopupComponent() {
             <SelectComponent 
              label={'Books'} 
              intitalIndex={bookIndex} 
-             menu_items={returnBooksArray} 
+             menu_items={booksArray} 
              setSelectedObj={setSelectedBookObj} 
             />
             <SelectComponent 
