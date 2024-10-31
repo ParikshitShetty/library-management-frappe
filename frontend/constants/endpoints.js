@@ -5,5 +5,6 @@ export const endpoints = {
     search : import.meta.env.VITE_SEARCH_URL,
     issue_book : import.meta.env.VITE_ISSUE_BOOK_URL,
     return_book : import.meta.env.VITE_RETURN_BOOK_URL,
-    get_member_transactions :import.meta.env.VITE_GET_MEMBER_TRANSACTION_URL
+    get_member_transactions :import.meta.env.VITE_GET_MEMBER_TRANSACTION_URL,
+    get_books_from_api : import.meta.env.VITE_GET_BOOKS_FROM_API_URL,
 }

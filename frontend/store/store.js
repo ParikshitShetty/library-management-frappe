@@ -28,3 +28,5 @@ export const currentDateState = atom('');
 export const transactionCompletedState = atom(false);
 
 export const openSortPopupState = atom(false);
+
+export const openImportPopUpState = atom(false);

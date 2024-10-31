@@ -15,7 +15,7 @@ from services.membersServices.addInitMembers import add_members
 from controllers.booksControllers.searchBooksController import search_router
 from controllers.booksControllers.issueBookController import issue_book_router
 from controllers.booksControllers.returnBookController import return_book_router
-from controllers.booksControllers.importBooksController import import_books_router
+from controllers.booksControllers.api.getBooksFromApiController import getBooksFromApi_router
 from controllers.booksControllers.listBooksController import list_books_router
 
 from controllers.transactionsControllers.listTransactionsController import list_transactions_router
@@ -54,7 +54,7 @@ app.include_router(search_router)
 # Books Controllers
 app.include_router(issue_book_router)
 app.include_router(return_book_router)
-app.include_router(import_books_router)
+app.include_router(getBooksFromApi_router)
 app.include_router(list_books_router)
 
 # Transactions Controllers
