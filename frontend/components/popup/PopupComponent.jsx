@@ -72,7 +72,7 @@ export default function PopupComponent() {
 
       // if(selectedMemberObj.books_issued <= 0) return toast('No books have been issued'); 
 
-      const url = endpoints.issue_book;
+      const url = endpoints.books.issue_book;
       const data = {
         "book_id": selectedBookObj.id,
         "member_id": selectedMemberObj.id
@@ -93,7 +93,7 @@ export default function PopupComponent() {
       if (!selectedMemberObj.id) return toast("Please select member");
       if (currentDate === '') return toast("Date is empty");
 
-      const url = endpoints.return_book;
+      const url = endpoints.books.return_book;
       const data = {
         "book_id": selectedBookObj.id,
         "member_id": selectedMemberObj.id,

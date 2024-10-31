@@ -4,7 +4,7 @@ import { endpoints } from '@/constants/endpoints';
 
 export default async function getBooksService() {
     try {
-        const data = await axios.get(endpoints.get_books);        
+        const data = await axios.get(endpoints.books.get_books);        
         return data.data.books;
     } catch (error) {
         console.error("Error while getting books:",error)

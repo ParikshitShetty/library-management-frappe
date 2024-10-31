@@ -22,6 +22,9 @@ from controllers.transactionsControllers.listTransactionsController import list_
 
 from controllers.membersControllers.membersWithIssuedBooks import member_with_issued_books_router
 from controllers.membersControllers.listMembersController import list_members_router
+from controllers.membersControllers.addMembersController import add_members_router
+from controllers.membersControllers.deleteMembersController import delete_members_router
+from controllers.membersControllers.updateMembersController import update_members_router
 
 create_database()
 
@@ -63,3 +66,6 @@ app.include_router(list_transactions_router)
 # Members Controllers
 app.include_router(list_members_router)
 app.include_router(member_with_issued_books_router)
+app.include_router(add_members_router)
+app.include_router(delete_members_router)
+app.include_router(update_members_router)

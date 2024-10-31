@@ -2,10 +2,13 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import React, { useEffect, useRef, useState } from 'react';
 import toast from 'react-hot-toast';
 import axios from 'axios';
+import { Button } from '@mui/material';
 // Global States
 import { 
+  editMemberState,
   issueBookState,
     membersArrayState, 
+    openMemberPopUpState, 
     popUpState, 
     returnBooksState, 
     searchTextState, 
@@ -15,10 +18,18 @@ import {
 import { searchMembers } from '@/utils/search/search';
 // Icons
 import { IoArrowForwardCircleOutline, IoArrowBackCircleOutline } from 'react-icons/io5';
+import { MdDelete, MdEdit } from "react-icons/md";
+// Constants
 import { endpoints } from '@/constants/endpoints';
+// Services
+import getMembersService from '@/services/api/getMembersService';
+
+const buttonStyle = {
+
+}
 
 function MembersRenderer() {
-    const members = useAtomValue(membersArrayState);
+    const [members,setMembers] = useAtom(membersArrayState);
 
     const searchText = useAtomValue(searchTextState);
 
@@ -36,6 +47,12 @@ function MembersRenderer() {
 
     const setIssueType = useSetAtom(issueBookState);
 
+    const setOpenMemberPopUp = useSetAtom(openMemberPopUpState);
+
+    const setEditMember = useSetAtom(editMemberState);
+
+    const [deleteLoading,setDeleteLoading] = useState(false);
+
     useEffect(() => {
         if (!renderRef.current) {
             renderRef.current = true;
@@ -47,7 +64,7 @@ function MembersRenderer() {
 
     const getUserInfo = async(member) => {
       try {
-        const url = endpoints.get_member_transactions;
+        const url = endpoints.transactions.get_member_transactions;
         const body = {
           "member_id" : member.id
         }
@@ -69,6 +86,29 @@ function MembersRenderer() {
       setOpen(true);
     };
 
+    const deleteMember = (member) => {
+      const url = endpoints.members.delete_members;
+      const body = {
+        id : member.id
+      }
+      setDeleteLoading(true);
+      axios.post(url,body).then(async(response) => {
+        console.log("response user deleted",response);
+        const updated_members = await getMembersService();
+        setMembers(updated_members);
+      }).catch((error) => {
+        console.error("Error while deleting member:",error)
+      }).finally(() => {
+        setDeleteLoading(false);
+      })
+    }
+
+    const editMember = (memberObj) => {
+      setSelectedMemberObj(memberObj);
+      setOpenMemberPopUp(true);
+      setEditMember(true);
+    }
+
   return (
     <>
         <div className='h-auto max-h-[80vh] w-full overflow-hidden overflow-y-auto'> 
@@ -78,9 +118,9 @@ function MembersRenderer() {
               >
                 <span className='w-[10%] text-wrap ml-2'>{member.id}</span>
                 <span className='w-[30%] text-wrap'>{member.name}</span>
-                <span className='w-[30%] text-wrap mx-2'>{member.email}</span>
-                <span className='w-[20%] text-wrap mx-2'>{member.outstanding_debt}</span>
-                <span className='w-[10vw] font-bold cursor-pointer'
+                <span className='w-[25%] text-wrap mx-2'>{member.email}</span>
+                <span className='w-[15%] text-wrap mx-2'>{member.outstanding_debt}</span>
+                <span className='w-[10%] font-bold cursor-pointer'
                   onClick={() => handleClickOpen(member,true)}
                 >
                   <IoArrowForwardCircleOutline className='size-7' />
@@ -90,6 +130,22 @@ function MembersRenderer() {
                 >
                   <IoArrowBackCircleOutline className='size-7' />
                 </span>
+                <Button onClick={() => deleteMember(member)}
+                sx={buttonStyle}
+                disabled={deleteLoading}  
+                >
+                  <MdDelete
+                    className='size-7 cursor-pointer'
+                  />
+                </Button>
+                <Button 
+                sx={buttonStyle}
+                onClick={() => editMember(member)}
+                >
+                  <MdEdit
+                    className='size-7 cursor-pointer'
+                  />
+                </Button>
               </div>      
             ))}  
         </div>

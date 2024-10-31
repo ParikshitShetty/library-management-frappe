@@ -30,3 +30,7 @@ export const transactionCompletedState = atom(false);
 export const openSortPopupState = atom(false);
 
 export const openImportPopUpState = atom(false);
+
+export const openMemberPopUpState = atom(false);
+
+export const editMemberState = atom(false);

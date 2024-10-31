@@ -15,7 +15,7 @@ export default function SelectComponent({ menu_items, label, intitalIndex, setSe
 
     const getUserInfo = async(member) => {
       try {
-        const url = endpoints.get_member_transactions;
+        const url = endpoints.transactions.get_member_transactions;
         const body = {
           "member_id" : member.id
         }
