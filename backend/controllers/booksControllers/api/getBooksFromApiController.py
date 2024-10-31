@@ -1,4 +1,5 @@
 from fastapi import APIRouter
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 import requests
 import math
@@ -26,7 +27,7 @@ async def getBooksFromApi(request:RequestData):
         print("request.count",request.count ,"num_iter",num_iter_float,num_iter_int)
         
         for page in range(num_iter_int):
-            base_url = "https://frappe.io/api/method/frappe-library?"
+            base_url = os.getenv('DATA_BASE_URL')
             url = f"{base_url}page={page + 1}&title={request.book_name}"
             response = requests.get(url).json()
             
@@ -80,8 +81,16 @@ async def getBooksFromApi(request:RequestData):
                 db.add(bookObj)
                 db.commit()
 
-        return { "response":bookArray }
+        return { "message":"Imported books successfully" }
     except Exception as e:
         db.rollback()
         print("Error while importing options books:",e)
-        return { "error":str(e) }
+        # Return a custom JSON error response
+        return JSONResponse(
+            status_code=500,
+            content={
+                "error": True,
+                "message": "Error while importing books",
+                "details": str(e)
+            }
+        )

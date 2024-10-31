@@ -26,11 +26,11 @@ function MembersRenderer() {
 
     const [filteredMembers,setFilteredMembers] = useState([]);
 
-    const [open, setOpen] = useAtom(popUpState);
+    const setOpen = useSetAtom(popUpState);
 
-    const [selectedBookObj,setSelectedBookObj] = useAtom(selectedBookObjState);
+    const setSelectedBookObj = useSetAtom(selectedBookObjState);
 
-    const [selectedMemberObj,setSelectedMemberObj] = useAtom(selectedMemberObjState);
+    const setSelectedMemberObj = useSetAtom(selectedMemberObjState);
 
     const setReturnBooksArray = useSetAtom(returnBooksState);
 
@@ -59,7 +59,7 @@ function MembersRenderer() {
     }
 
     const handleClickOpen = (member,issueType) => {
-      if(member.books_issued <= 0){
+      if(member.books_issued <= 0 && !issueType){
         return toast('No books have been issued to this member'); 
       }
       setIssueType(issueType);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Box, Dialog, DialogTitle, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -16,23 +16,16 @@ export default function ImportPopUp({handleClose}) {
 
     const [loading,setLoading] = useState(false);
 
-    const [searchResults,setSearchResults] = useState([]);
-
     const handleChange = (e) => {
         if (e.target.name === 'book'){
-            if (e.target.value === '') setSearchResults([]);
             setSearchText(e.target.value);
         } else {
             setCount(e.target.value)
         }
     };
 
-
     async function FetchData(){
-        if (searchText === '' && count === 0) {
-            setSearchResults([]);
-            return toast('fields are empty');
-        }
+        if (searchText === '' && count === 0) return toast('fields are empty');
 
         const url = endpoints.get_books_from_api;
         const body = {
@@ -41,13 +34,14 @@ export default function ImportPopUp({handleClose}) {
         }
         setLoading(true);
         axios.post(url,body).then(function (response) {
-            console.log("response",response.data?.response);
-            setSearchResults(response.data.response ?? [])
+            console.log("response",response.data?.message);
+            toast.success(response.data?.message);
         }).catch(function (error) {
-            setSearchResults([])
             console.log("Error while fetching data",error);
+            toast.error(error.response?.data?.message);
         }).finally(function () {
             setLoading(false);
+            setOpenImportPopUp(false);
         });
     }
   return (
@@ -115,22 +109,6 @@ export default function ImportPopUp({handleClose}) {
                         >
                             Import Books
                         </Button>
-                    </Box>
-                    
-                    <Box
-                    sx={{
-                        width: '100%'
-                    }}
-                    >
-                        {
-                            searchResults.map((res,index) => (
-                                <span 
-                                key={index}
-                                className='w-full h-full py-2'>
-                                    {res.title}<br />
-                                </span>
-                            ))
-                        }
                     </Box>
                 </Box>
             </Dialog>

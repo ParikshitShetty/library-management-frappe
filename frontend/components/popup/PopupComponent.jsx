@@ -70,7 +70,7 @@ export default function PopupComponent() {
       if (!selectedBookObj.id) return toast("Please select book");
       if (!selectedMemberObj.id) return toast("Please select member");
 
-      if(selectedMemberObj.books_issued <= 0) return toast('No books have been issued'); 
+      // if(selectedMemberObj.books_issued <= 0) return toast('No books have been issued'); 
 
       const url = endpoints.issue_book;
       const data = {
@@ -78,7 +78,7 @@ export default function PopupComponent() {
         "member_id": selectedMemberObj.id
       }
       const response = await axios.post(url,data);
-      toast(response.data?.message)
+      toast.success(response.data?.message)
       console.log("response",response)
       handleClose()
       await updateArrays();
