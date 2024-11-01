@@ -43,7 +43,7 @@ function MembersCollection() {
           </div>
           <div className='w-full h-full flex flex-col justify-center items-center'>
             <div className='w-full h-auto flex justify-around items-center py-4 shadow-2xl'>
-              <span className='w-[10%] font-bold'>Id</span>
+              <span className='w-[10%] font-bold ml-4'>Id</span>
               <span className='w-[20%] font-bold'>Name</span>
               <span className='w-[25%] font-bold'>Email</span>
               <span className='w-[15%] font-bold'>Outstanding Debt</span>
