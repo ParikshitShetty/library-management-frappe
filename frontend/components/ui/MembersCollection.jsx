@@ -28,7 +28,7 @@ function MembersCollection() {
         <main className='min-h-screen w-11/12 text-start'>
           <div className='w-full flex justify-center items-center relative h-[10vh]'>
             <div className='w-1/6 absolute left-10'>
-              <Search placeholderText={'Search Members'} />
+              <Search placeholderText={'Search Members by Name'} />
             </div>
             <header className='text-center text-2xl font-bold w-full'>Members</header>
 

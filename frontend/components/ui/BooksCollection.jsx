@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '@mui/material'
-import { useSetAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 // Components
 import BooksRenderer from '../renderer/BooksRenderer'
 import Search from '../reusable/Search'
+import Toggle from '../reusable/Toggle';
 // Global States
 import { 
   editBookAtom, 
   openBookPopUpAtom, 
+  searchParamsAtom, 
   selectedBookObjAtom} from '@/store/store';
 
 function BooksCollection() {
@@ -16,6 +18,12 @@ function BooksCollection() {
   const setEditBook = useSetAtom(editBookAtom);
 
   const setSelectedBookObj = useSetAtom(selectedBookObjAtom);
+
+  const [searchParams,setSearchParams] = useAtom(searchParamsAtom);
+
+  const handleChange = (event, newParams) => {
+    setSearchParams(newParams);
+  }
 
   const openAddBook = () => {
     setSelectedBookObj({});
@@ -27,7 +35,10 @@ function BooksCollection() {
         <main className='min-h-screen w-11/12 text-start'>
           <div className='w-full flex justify-center items-center relative h-[10vh]'>
             <div className='w-1/6 absolute left-10'>
-              <Search placeholderText={'Search Books'} />
+              <Search placeholderText={`Search Books by ${searchParams}`} />
+            </div>
+            <div className='w-1/6 absolute left-[20%]'>
+                <Toggle searchParams={searchParams} handleChange={handleChange} />
             </div>
             <header className='text-center text-2xl font-bold w-full'>Books List</header>
             <div className='w-[20%] flex items-center justify-center'>

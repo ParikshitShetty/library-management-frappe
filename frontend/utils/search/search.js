@@ -1,8 +1,9 @@
-const searchBooks = ({ books, searchText}) => {
+const searchBooks = ({ books, searchText, searchParams}) => {
     let searchResults = [];
     if (searchText !== "") {
         searchResults = books.filter(book => {
-            return book.title.toLowerCase().includes(searchText.toLowerCase())
+            if (searchParams === 'Title')  return book.title.toLowerCase().includes(searchText.toLowerCase());
+            else return book.authors.toLowerCase().includes(searchText.toLowerCase())
         });
     } else searchResults = books;
     return searchResults

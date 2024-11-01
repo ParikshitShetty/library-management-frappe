@@ -109,7 +109,9 @@ function MembersRenderer() {
   return (
     <>
         <div className='h-auto max-h-[80vh] w-full overflow-hidden overflow-y-auto'> 
-            {filteredMembers?.map((member,index) => (
+            {filteredMembers.length > 0 
+            ? 
+            filteredMembers?.map((member,index) => (
               <div className='w-full h-auto flex justify-around items-center my-1 py-1 border-t-2'
               key={index}
               >
@@ -142,7 +144,12 @@ function MembersRenderer() {
                   />
                 </Button>
               </div>      
-            ))}  
+            ))
+          : (
+            <div className='w-full h-auto flex justify-around items-center my-1 py-1 border-t-2'>
+              No Members Found
+            </div>
+          )}  
         </div>
     </>
   )

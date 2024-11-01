@@ -13,6 +13,7 @@ import {
     issueBookAtom, 
     openBookPopUpAtom, 
     popUpAtom, 
+    searchParamsAtom, 
     searchTextAtom, 
     selectedBookObjAtom,
     selectedMemberObjAtom,} from '@/store/store'
@@ -27,6 +28,8 @@ function BooksRenderer() {
     const [books,setBooks] = useAtom(booksArrayAtom);
 
     const searchText = useAtomValue(searchTextAtom);
+
+    const searchParams = useAtomValue(searchParamsAtom);
 
     const [filteredBooks,setFilteredBooks] = useState([]);
 
@@ -43,9 +46,9 @@ function BooksRenderer() {
     const setEditBook = useSetAtom(editBookAtom);
 
     useEffect(() => {
-      const searchResults = searchBooks({ books, searchText })
+      const searchResults = searchBooks({ books, searchText, searchParams })
       setFilteredBooks(searchResults)
-    },[searchText,books])
+    },[searchText,books,searchParams])
 
     const handleClickOpen = (book) => {
       if ( book.copies_available <= 0) return toast.error('We ran out of books');
@@ -79,7 +82,9 @@ function BooksRenderer() {
   return (
     <>
         <div className='h-auto max-h-[80vh] w-full overflow-hidden overflow-y-auto'> 
-            {filteredBooks?.map((book,index) => (
+            {filteredBooks.length > 0 
+            ? 
+              filteredBooks?.map((book,index) => (
               <div className='w-full h-auto flex justify-around items-center my-1 py-1 border-t-2 '
               key={index}
               >
@@ -107,7 +112,12 @@ function BooksRenderer() {
                   />
                 </Button>
               </div>      
-            ))}  
+            ))
+          : (
+            <div className='w-full h-auto flex justify-around items-center my-1 py-1 border-t-2'>
+              No Books Found
+            </div>
+          )}  
         </div>
     </>
   )

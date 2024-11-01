@@ -13,6 +13,8 @@ export const transactionArrayAtom = atom([]);
 
 export const searchTextAtom = atom('');
 
+export const searchParamsAtom = atom('Title');
+
 export const popUpAtom = atom(false);
 
 export const selectedBookObjAtom = atom({});
