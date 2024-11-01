@@ -3,10 +3,10 @@
 import React, { useEffect, useRef } from 'react'
 import { useAtom } from 'jotai';
 // Global state
-import { currentDateState } from '@/store/store';
+import { currentDateAtom } from '@/store/store';
 
 function useGetDate() {
-    const [ currentDate, setCurrentDate] = useAtom(currentDateState);
+    const [ currentDate, setCurrentDate] = useAtom(currentDateAtom);
     const renderRef = useRef(true);
 
     useEffect(()=>{

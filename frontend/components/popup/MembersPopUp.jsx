@@ -11,10 +11,10 @@ import { endpoints } from '@/constants/endpoints';
 import getMembersService from '@/services/api/getMembersService';
 // Global States
 import { 
-  editMemberState,
-  membersArrayState, 
-  openMemberPopUpState, 
-  selectedMemberObjState} from '@/store/store';
+  editMemberAtom,
+  membersArrayAtom, 
+  openMemberPopUpAtom, 
+  selectedMemberObjAtom} from '@/store/store';
 import { useEffect } from 'react';
 
 const textFeildStyle = {
@@ -28,13 +28,13 @@ export default function MembersPopUp() {
     phone : ''
   });
 
-  const setMembers = useSetAtom(membersArrayState);
+  const setMembers = useSetAtom(membersArrayAtom);
 
-  const [openMemberPopUp,setOpenMemberPopUp] = useAtom(openMemberPopUpState);
+  const [openMemberPopUp,setOpenMemberPopUp] = useAtom(openMemberPopUpAtom);
 
-  const editMember = useAtomValue(editMemberState);
+  const editMember = useAtomValue(editMemberAtom);
 
-  const selectedMemberObj = useAtomValue(selectedMemberObjState);
+  const selectedMemberObj = useAtomValue(selectedMemberObjAtom);
 
   const handleClose = () => {
     setOpenMemberPopUp(false);

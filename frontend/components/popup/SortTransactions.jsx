@@ -6,13 +6,13 @@ import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
 import { IoCloseSharp } from "react-icons/io5";
 // Global States
 import { 
-    openSortPopupState, 
-    transactionCompletedState } from '@/store/store';
+    openSortPopupAtom, 
+    transactionCompletedAtom } from '@/store/store';
 
 export default function SortTransactions() {
-    const [openSortPopup,setOpenSortPopup] = useAtom(openSortPopupState);
+    const [openSortPopup,setOpenSortPopup] = useAtom(openSortPopupAtom);
 
-    const [transactionCompleted,setTransactionCompleted] = useAtom(transactionCompletedState);
+    const [transactionCompleted,setTransactionCompleted] = useAtom(transactionCompletedAtom);
 
     const popUpToggle = () => setOpenSortPopup(prev => !prev);
 

@@ -7,8 +7,8 @@ import { IoPeopleSharp } from "react-icons/io5";
 import { ImBooks } from "react-icons/im";
 // Global States
 import { 
-    searchTextState, 
-    sidebarIndexState } from '@/store/store';
+    searchTextAtom, 
+    sidebarIndexAtom } from '@/store/store';
 
 const sidebarArray = [ 
     { name :'Home', link:'/', icon:FaHome },
@@ -16,9 +16,9 @@ const sidebarArray = [
     { name :'Books', link:'/books', icon:ImBooks },
 ]
 function Sidebar() {
-    const [currentIndex, setCurrentIndex] = useAtom(sidebarIndexState);
+    const [currentIndex, setCurrentIndex] = useAtom(sidebarIndexAtom);
 
-    const setSearchText = useSetAtom(searchTextState);
+    const setSearchText = useSetAtom(searchTextAtom);
 
     const navigate = useNavigate();
 

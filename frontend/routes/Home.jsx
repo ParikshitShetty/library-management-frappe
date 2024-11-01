@@ -9,19 +9,19 @@ import ImportPopUp from '@/components/popup/ImportPopUp';
 import getTransactionsService from '@/services/api/getTransactionsService';
 // Global States
 import { 
-  issueBookState,
-  openImportPopUpState,
-  popUpState, 
-  transactionArrayState} from '@/store/store';
+  issueBookAtom,
+  openImportPopUpAtom,
+  popUpAtom, 
+  transactionArrayAtom} from '@/store/store';
 
 function Home() {
-  const setOpen = useSetAtom(popUpState);
+  const setOpen = useSetAtom(popUpAtom);
 
-  const setIssueType = useSetAtom(issueBookState);
+  const setIssueType = useSetAtom(issueBookAtom);
 
-  const setTransactions = useSetAtom(transactionArrayState);
+  const setTransactions = useSetAtom(transactionArrayAtom);
 
-  const setOpenImportPopUp = useSetAtom(openImportPopUpState);
+  const setOpenImportPopUp = useSetAtom(openImportPopUpAtom);
 
   async function getTransactions () {
     const transactionsArray = await getTransactionsService();

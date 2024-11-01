@@ -13,10 +13,10 @@ import { endpoints } from '@/constants/endpoints';
 import getBooksService from '@/services/api/getBooksService';
 // Global States
 import { 
-  booksArrayState,
-  editBookState,
-  openBookPopUpState,  
-  selectedBookObjState,} from '@/store/store';
+  booksArrayAtom,
+  editBookAtom,
+  openBookPopUpAtom,  
+  selectedBookObjAtom,} from '@/store/store';
   
 const textFeildStyle = {
   width:'40%',
@@ -55,13 +55,13 @@ const convertString_to_Number = (booksData) => {
 export default function BooksPopUp() {
   const [booksData,setBooksData] = useState(booksIntialValue); 
   
-  const setBooks = useSetAtom(booksArrayState);
+  const setBooks = useSetAtom(booksArrayAtom);
   
-  const [openBookPopUp,setOpenBookPopUp] = useAtom(openBookPopUpState);
+  const [openBookPopUp,setOpenBookPopUp] = useAtom(openBookPopUpAtom);
   
-  const editbook = useAtomValue(editBookState);
+  const editbook = useAtomValue(editBookAtom);
   
-  const selectedBookObj = useAtomValue(selectedBookObjState);
+  const selectedBookObj = useAtomValue(selectedBookObjAtom);
 
   const handleClose = () => {
     setOpenBookPopUp(false);

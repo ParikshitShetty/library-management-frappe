@@ -3,15 +3,15 @@ import { useAtomValue, useSetAtom } from 'jotai';
 import { FormControl, Box, Select, MenuItem, InputLabel } from '@mui/material';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { issueBookState, returnBooksState } from '@/store/store';
+import { issueBookAtom, returnBooksAtom } from '@/store/store';
 import { endpoints } from '@/constants/endpoints';
 
 export default function SelectComponent({ menu_items, label, intitalIndex, setSelectedObj }) {
     const [dropdownValue, setDropdownValue] = useState(intitalIndex);
 
-    const issueType = useAtomValue(issueBookState);
+    const issueType = useAtomValue(issueBookAtom);
 
-    const setReturnBooksArray = useSetAtom(returnBooksState);
+    const setReturnBooksArray = useSetAtom(returnBooksAtom);
 
     const getUserInfo = async(member) => {
       try {

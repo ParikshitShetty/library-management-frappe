@@ -6,10 +6,10 @@ import { useAtom } from 'jotai';
 // Constants
 import { endpoints } from '@/constants/endpoints';
 // Global States
-import { openImportPopUpState } from '@/store/store';
+import { openImportPopUpAtom } from '@/store/store';
 
 export default function ImportPopUp({handleClose}) {
-    const [openImportPopUp,setOpenImportPopUp] = useAtom(openImportPopUpState);
+    const [openImportPopUp,setOpenImportPopUp] = useAtom(openImportPopUpAtom);
 
     const [searchText,setSearchText] = useState('');
     const [count,setCount] = useState(0);

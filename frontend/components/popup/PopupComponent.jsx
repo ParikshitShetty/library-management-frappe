@@ -10,15 +10,15 @@ import SelectComponent from './SelectComponent';
 import DatePicker from '../date/DatePicker';
 // Global States
 import { 
-  booksArrayState, 
-  currentDateState, 
-  issueBookState, 
-  membersArrayState, 
-  popUpState,
-  returnBooksState,
-  selectedBookObjState,
-  selectedMemberObjState,
-  transactionArrayState, } from '@/store/store';
+  booksArrayAtom, 
+  currentDateAtom, 
+  issueBookAtom, 
+  membersArrayAtom, 
+  popUpAtom,
+  returnBooksAtom,
+  selectedBookObjAtom,
+  selectedMemberObjAtom,
+  transactionArrayAtom, } from '@/store/store';
 // Custom Hooks
 import useGetBookIndex from '@/hooks/memo/useGetBookIndex';
 import useGetMemberIndex from '@/hooks/memo/useGetMemberIndex';
@@ -32,23 +32,23 @@ import getMembersService from '@/services/api/getMembersService';
 export default function PopupComponent() {
   const [booksArray,setBooksArray] = useState([]);
 
-  const [open, setOpen] = useAtom(popUpState);
+  const [open, setOpen] = useAtom(popUpAtom);
 
-  const [books,setBooks] = useAtom(booksArrayState);
+  const [books,setBooks] = useAtom(booksArrayAtom);
 
-  const issueType = useAtomValue(issueBookState);
+  const issueType = useAtomValue(issueBookAtom);
 
-  const [members,setMembers] = useAtom(membersArrayState);
+  const [members,setMembers] = useAtom(membersArrayAtom);
 
-  const returnBooksArray = useAtomValue(returnBooksState);
+  const returnBooksArray = useAtomValue(returnBooksAtom);
 
-  const setTransactions = useSetAtom(transactionArrayState);
+  const setTransactions = useSetAtom(transactionArrayAtom);
 
-  const [selectedBookObj, setSelectedBookObj] = useAtom(selectedBookObjState);
+  const [selectedBookObj, setSelectedBookObj] = useAtom(selectedBookObjAtom);
 
-  const [selectedMemberObj, setSelectedMemberObj] = useAtom(selectedMemberObjState);
+  const [selectedMemberObj, setSelectedMemberObj] = useAtom(selectedMemberObjAtom);
 
-  const currentDate = useAtomValue(currentDateState);
+  const currentDate = useAtomValue(currentDateAtom);
 
   const handleClose = () => setOpen(false);
 

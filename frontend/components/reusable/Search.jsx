@@ -1,10 +1,10 @@
 import { useAtom } from 'jotai';
 import React from 'react';
 // Global States
-import { searchTextState } from '@/store/store';
+import { searchTextAtom } from '@/store/store';
 
 function Search({ placeholderText }) {
-  const [searchText, setSearchText] = useAtom(searchTextState);
+  const [searchText, setSearchText] = useAtom(searchTextAtom);
 
   const changeHandler = (e) => setSearchText(e.target.value);
 

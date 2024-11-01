@@ -16,12 +16,12 @@ import getMembersService from '@/services/api/getMembersService'
 import getBooksService from '@/services/api/getBooksService'
 // Global States
 import { 
-  booksArrayState, 
-  membersArrayState } from '@/store/store';
+  booksArrayAtom, 
+  membersArrayAtom } from '@/store/store';
 
 function App() {
-  const setMembers = useSetAtom(membersArrayState);
-  const setBooks = useSetAtom(booksArrayState);
+  const setMembers = useSetAtom(membersArrayAtom);
+  const setBooks = useSetAtom(booksArrayAtom);
 
   const renderRef = useRef(true);
 

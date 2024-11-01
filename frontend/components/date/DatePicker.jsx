@@ -5,7 +5,7 @@ import { TiArrowBack, TiArrowForward } from "react-icons/ti";
 // Hooks
 import useGetDate from '@/hooks/date/useGetDate';
 // Global States
-import { currentDateState } from '@/store/store';
+import { currentDateAtom } from '@/store/store';
 // Import Json
 import calendar from '@/public/calendar.json'
 // Import Common Js Functions
@@ -15,7 +15,7 @@ function DatePicker() {
   // Call the custom hook
   useGetDate();
   
-  const [currentDate,setCurrentDate] = useAtom(currentDateState);
+  const [currentDate,setCurrentDate] = useAtom(currentDateAtom);
 
   const [dateObj,setDateObj] = useState({});
 

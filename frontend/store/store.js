@@ -3,38 +3,38 @@ import { atomWithStorage, createJSONStorage } from 'jotai/utils';
 
 const storage = createJSONStorage(() => sessionStorage)
 
-export const sidebarIndexState = atomWithStorage('sidebarIndex', 0, storage);
+export const sidebarIndexAtom = atomWithStorage('sidebarIndex', 0, storage);
 
-export const booksArrayState = atom([]);
+export const booksArrayAtom = atom([]);
 
-export const membersArrayState = atom([]);
+export const membersArrayAtom = atom([]);
 
-export const transactionArrayState = atom([]);
+export const transactionArrayAtom = atom([]);
 
-export const searchTextState = atom('');
+export const searchTextAtom = atom('');
 
-export const popUpState = atom(false);
+export const popUpAtom = atom(false);
 
-export const selectedBookObjState = atom({});
+export const selectedBookObjAtom = atom({});
 
-export const selectedMemberObjState = atom({});
+export const selectedMemberObjAtom = atom({});
 
-export const issueBookState = atom(true);
+export const issueBookAtom = atom(true);
 
-export const returnBooksState = atom([]);
+export const returnBooksAtom = atom([]);
 
-export const currentDateState = atom('');
+export const currentDateAtom = atom('');
 
-export const transactionCompletedState = atom(false);
+export const transactionCompletedAtom = atom(false);
 
-export const openSortPopupState = atom(false);
+export const openSortPopupAtom = atom(false);
 
-export const openImportPopUpState = atom(false);
+export const openImportPopUpAtom = atom(false);
 
-export const openMemberPopUpState = atom(false);
+export const openMemberPopUpAtom = atom(false);
 
-export const editMemberState = atom(false);
+export const editMemberAtom = atom(false);
 
-export const openBookPopUpState = atom(false);
+export const openBookPopUpAtom = atom(false);
 
-export const editBookState = atom(false);
+export const editBookAtom = atom(false);

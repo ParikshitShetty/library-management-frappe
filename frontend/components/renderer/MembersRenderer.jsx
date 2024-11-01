@@ -5,15 +5,15 @@ import axios from 'axios';
 import { Button } from '@mui/material';
 // Global States
 import { 
-  editMemberState,
-  issueBookState,
-    membersArrayState, 
-    openMemberPopUpState, 
-    popUpState, 
-    returnBooksState, 
-    searchTextState, 
-    selectedBookObjState, 
-    selectedMemberObjState} from '@/store/store';
+  editMemberAtom,
+  issueBookAtom,
+    membersArrayAtom, 
+    openMemberPopUpAtom, 
+    popUpAtom, 
+    returnBooksAtom, 
+    searchTextAtom, 
+    selectedBookObjAtom, 
+    selectedMemberObjAtom} from '@/store/store';
 // Utils
 import { searchMembers } from '@/utils/search/search';
 // Icons
@@ -26,27 +26,27 @@ import getMembersService from '@/services/api/getMembersService';
 
 
 function MembersRenderer() {
-    const [members,setMembers] = useAtom(membersArrayState);
+    const [members,setMembers] = useAtom(membersArrayAtom);
 
-    const searchText = useAtomValue(searchTextState);
+    const searchText = useAtomValue(searchTextAtom);
 
     const renderRef = useRef(false);
 
     const [filteredMembers,setFilteredMembers] = useState([]);
 
-    const setOpen = useSetAtom(popUpState);
+    const setOpen = useSetAtom(popUpAtom);
 
-    const setSelectedBookObj = useSetAtom(selectedBookObjState);
+    const setSelectedBookObj = useSetAtom(selectedBookObjAtom);
 
-    const setSelectedMemberObj = useSetAtom(selectedMemberObjState);
+    const setSelectedMemberObj = useSetAtom(selectedMemberObjAtom);
 
-    const setReturnBooksArray = useSetAtom(returnBooksState);
+    const setReturnBooksArray = useSetAtom(returnBooksAtom);
 
-    const setIssueType = useSetAtom(issueBookState);
+    const setIssueType = useSetAtom(issueBookAtom);
 
-    const setOpenMemberPopUp = useSetAtom(openMemberPopUpState);
+    const setOpenMemberPopUp = useSetAtom(openMemberPopUpAtom);
 
-    const setEditMember = useSetAtom(editMemberState);
+    const setEditMember = useSetAtom(editMemberAtom);
 
     const [deleteLoading,setDeleteLoading] = useState(false);
 

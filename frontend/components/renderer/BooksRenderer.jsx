@@ -8,14 +8,14 @@ import { IoArrowForwardCircleOutline } from "react-icons/io5";
 import { MdDelete, MdEdit } from 'react-icons/md';
 // Global States
 import { 
-    booksArrayState, 
-    editBookState, 
-    issueBookState, 
-    openBookPopUpState, 
-    popUpState, 
-    searchTextState, 
-    selectedBookObjState,
-    selectedMemberObjState,} from '@/store/store'
+    booksArrayAtom, 
+    editBookAtom, 
+    issueBookAtom, 
+    openBookPopUpAtom, 
+    popUpAtom, 
+    searchTextAtom, 
+    selectedBookObjAtom,
+    selectedMemberObjAtom,} from '@/store/store'
 //Utils 
 import { searchBooks } from '@/utils/search/search';
 // Constants
@@ -24,23 +24,23 @@ import { endpoints } from '@/constants/endpoints';
 import getBooksService from '@/services/api/getBooksService';
 
 function BooksRenderer() {
-    const [books,setBooks] = useAtom(booksArrayState);
+    const [books,setBooks] = useAtom(booksArrayAtom);
 
-    const searchText = useAtomValue(searchTextState);
+    const searchText = useAtomValue(searchTextAtom);
 
     const [filteredBooks,setFilteredBooks] = useState([]);
 
-    const setOpen = useSetAtom(popUpState);
+    const setOpen = useSetAtom(popUpAtom);
 
-    const setSelectedBookObj = useSetAtom(selectedBookObjState);
+    const setSelectedBookObj = useSetAtom(selectedBookObjAtom);
 
-    const setSelectedMemberObj = useSetAtom(selectedMemberObjState);
+    const setSelectedMemberObj = useSetAtom(selectedMemberObjAtom);
 
-    const setIssueType = useSetAtom(issueBookState);
+    const setIssueType = useSetAtom(issueBookAtom);
 
-    const setOpenBookPopUp = useSetAtom(openBookPopUpState);
+    const setOpenBookPopUp = useSetAtom(openBookPopUpAtom);
 
-    const setEditBook = useSetAtom(editBookState);
+    const setEditBook = useSetAtom(editBookAtom);
 
     useEffect(() => {
       const searchResults = searchBooks({ books, searchText })

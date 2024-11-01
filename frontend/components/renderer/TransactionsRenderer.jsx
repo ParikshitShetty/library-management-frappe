@@ -2,20 +2,20 @@ import { useAtomValue } from 'jotai';
 import React, { useEffect, useState } from 'react';
 // Global States
 import { 
-  openSortPopupState, 
-  transactionArrayState, 
-  transactionCompletedState } from '@/store/store';
+  openSortPopupAtom, 
+  transactionArrayAtom, 
+  transactionCompletedAtom } from '@/store/store';
 // Utils
 import { getDate } from '@/utils/date/date';
 
 function TransactionRenderer() {
   const [filteredTransactions,setFilteredTransactions] = useState([]);
 
-  const openSortPopup = useAtomValue(openSortPopupState);
+  const openSortPopup = useAtomValue(openSortPopupAtom);
 
-  const transactions = useAtomValue(transactionArrayState);
+  const transactions = useAtomValue(transactionArrayAtom);
 
-  const transactionCompleted = useAtomValue(transactionCompletedState);
+  const transactionCompleted = useAtomValue(transactionCompletedAtom);
 
   useEffect(() => {
     if (openSortPopup) {

@@ -6,16 +6,16 @@ import BooksRenderer from '../renderer/BooksRenderer'
 import Search from '../reusable/Search'
 // Global States
 import { 
-  editBookState, 
-  openBookPopUpState, 
-  selectedBookObjState} from '@/store/store';
+  editBookAtom, 
+  openBookPopUpAtom, 
+  selectedBookObjAtom} from '@/store/store';
 
 function BooksCollection() {
-  const setOpenBookPopUp = useSetAtom(openBookPopUpState);
+  const setOpenBookPopUp = useSetAtom(openBookPopUpAtom);
 
-  const setEditBook = useSetAtom(editBookState);
+  const setEditBook = useSetAtom(editBookAtom);
 
-  const setSelectedBookObj = useSetAtom(selectedBookObjState);
+  const setSelectedBookObj = useSetAtom(selectedBookObjAtom);
 
   const openAddBook = () => {
     setSelectedBookObj({});

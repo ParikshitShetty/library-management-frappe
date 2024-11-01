@@ -6,16 +6,16 @@ import Search from '../reusable/Search'
 import MembersRenderer from '../renderer/MembersRenderer'
 // Global States
 import { 
-  editMemberState, 
-  openMemberPopUpState,
-  selectedMemberObjState, } from '@/store/store';
+  editMemberAtom, 
+  openMemberPopUpAtom,
+  selectedMemberObjAtom, } from '@/store/store';
 
 
 function MembersCollection() {
-  const setOpenMemberPopUp = useSetAtom(openMemberPopUpState);
-  const setEditMember = useSetAtom(editMemberState);
+  const setOpenMemberPopUp = useSetAtom(openMemberPopUpAtom);
+  const setEditMember = useSetAtom(editMemberAtom);
 
-  const setSelectedMemberObj = useSetAtom(selectedMemberObjState);
+  const setSelectedMemberObj = useSetAtom(selectedMemberObjAtom);
 
   const openAddMember = () => {
     setSelectedMemberObj({});
