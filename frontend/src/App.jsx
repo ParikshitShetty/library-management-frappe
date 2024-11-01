@@ -10,7 +10,7 @@ import Books from '@/routes/Books'
 // Import Components
 import PopupComponent from '@/components/popup/PopupComponent'
 // Error handler
-import FallbackComponent from '@/components/error/FallBackComponent'
+import FallbackComponent from '@/components/error/FallbackComponent'
 // Services
 import getMembersService from '@/services/api/getMembersService'
 import getBooksService from '@/services/api/getBooksService'

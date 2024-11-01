@@ -1,0 +1,32 @@
+services:  
+  library_server:
+    container_name: library_server
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - C:/Users/parik/projects/library-management-frappe/backend:/app
+    restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  library_client:
+    container_name: library_client
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - library_server
+    restart: always
+
+volumes:
+  c-drive:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: C:/Users/parik/projects/library-management-frappe/backend
