@@ -34,3 +34,7 @@ export const openImportPopUpState = atom(false);
 export const openMemberPopUpState = atom(false);
 
 export const editMemberState = atom(false);
+
+export const openBookPopUpState = atom(false);
+
+export const editBookState = atom(false);

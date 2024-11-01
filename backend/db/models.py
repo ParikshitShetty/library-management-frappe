@@ -59,8 +59,8 @@ class Transactions(Base):
     __tablename__ = "tranasction"
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    member_id = Column(Integer, ForeignKey('members.id'), nullable=False)
-    book_id = Column(Integer, ForeignKey('books.id'), nullable=False)
+    member_id = Column(Integer, ForeignKey('members.id', ondelete='CASCADE'), nullable=False)
+    book_id = Column(Integer, ForeignKey('books.id', ondelete='CASCADE'), nullable=False)
     issue_date = Column(DateTime, nullable=False)
     return_date = Column(DateTime, nullable=True)
     rent_fee =  Column(Float, default=0.0)

@@ -1,0 +1,119 @@
+import { TextField } from '@mui/material'
+import React from 'react'
+
+export default function AddBooksForm({ booksData, handleChange, textFeildStyle}) {
+  return (
+    <>
+        <TextField 
+            label="Title" 
+            variant="outlined" 
+            name='title'
+            type='text'
+            required
+            value={booksData.title}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Authors" 
+            variant="outlined" 
+            name='authors'
+            type='text'
+            required
+            value={booksData.authors}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Average Rating" 
+            variant="outlined" 
+            name='average_rating'
+            type='number'
+            required
+            value={booksData.average_rating}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="isbn" 
+            variant="outlined" 
+            name='isbn'
+            type='number'
+            required
+            value={booksData.isbn}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="isbn13" 
+            variant="outlined" 
+            name='isbn13'
+            type='number'
+            required
+            value={booksData.isbn13}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Language Code" 
+            variant="outlined" 
+            name='language_code'
+            type='text'
+            required
+            value={booksData.language_code}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Num of Pages" 
+            variant="outlined" 
+            name='num_pages'
+            type='number'
+            required
+            value={booksData.num_pages}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Ratings Count" 
+            variant="outlined" 
+            name='ratings_count'
+            type='number'
+            required
+            value={booksData.ratings_count}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Text Reviews Count" 
+            variant="outlined" 
+            name='text_reviews_count'
+            type='number'
+            required
+            value={booksData.text_reviews_count}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Publication Date" 
+            variant="outlined" 
+            name='publication_date'
+            type='date'
+            required
+            value={booksData.publication_date}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+        <TextField 
+            label="Publisher" 
+            variant="outlined" 
+            name='publisher'
+            type='text'
+            required
+            value={booksData.publisher}
+            onChange={handleChange}
+            sx={textFeildStyle}
+        />
+    </>
+  )
+}

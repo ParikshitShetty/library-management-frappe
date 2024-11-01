@@ -24,9 +24,6 @@ import { endpoints } from '@/constants/endpoints';
 // Services
 import getMembersService from '@/services/api/getMembersService';
 
-const buttonStyle = {
-
-}
 
 function MembersRenderer() {
     const [members,setMembers] = useAtom(membersArrayState);
@@ -131,7 +128,6 @@ function MembersRenderer() {
                   <IoArrowBackCircleOutline className='size-7' />
                 </span>
                 <Button onClick={() => deleteMember(member)}
-                sx={buttonStyle}
                 disabled={deleteLoading}  
                 >
                   <MdDelete
@@ -139,7 +135,6 @@ function MembersRenderer() {
                   />
                 </Button>
                 <Button 
-                sx={buttonStyle}
                 onClick={() => editMember(member)}
                 >
                   <MdEdit

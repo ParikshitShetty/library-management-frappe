@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { useAtomValue, useSetAtom } from 'jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import toast from 'react-hot-toast';
+import { Button } from '@mui/material';
+import axios from 'axios';
 // Icons
 import { IoArrowForwardCircleOutline } from "react-icons/io5";
+import { MdDelete, MdEdit } from 'react-icons/md';
 // Global States
 import { 
     booksArrayState, 
+    editBookState, 
     issueBookState, 
+    openBookPopUpState, 
     popUpState, 
     searchTextState, 
     selectedBookObjState,
     selectedMemberObjState,} from '@/store/store'
 //Utils 
 import { searchBooks } from '@/utils/search/search';
+// Constants
+import { endpoints } from '@/constants/endpoints';
+// Services
+import getBooksService from '@/services/api/getBooksService';
 
 function BooksRenderer() {
-    const books = useAtomValue(booksArrayState);
+    const [books,setBooks] = useAtom(booksArrayState);
 
     const searchText = useAtomValue(searchTextState);
 
@@ -29,6 +38,10 @@ function BooksRenderer() {
 
     const setIssueType = useSetAtom(issueBookState);
 
+    const setOpenBookPopUp = useSetAtom(openBookPopUpState);
+
+    const setEditBook = useSetAtom(editBookState);
+
     useEffect(() => {
       const searchResults = searchBooks({ books, searchText })
       setFilteredBooks(searchResults)
@@ -41,6 +54,28 @@ function BooksRenderer() {
       setOpen(true);
       setIssueType(true);
     };
+
+    const deleteBook = (book) => {
+      const url = endpoints.books.delete_books;
+      const body = {
+        id : book.id
+      }
+      axios.post(url,body).then(async(response) => {
+        console.log("Reponse deleted book",response);
+        toast.success(response.data.message);
+        const updatedBooks = await getBooksService();
+        setBooks(updatedBooks);
+      }).catch((error) => {
+        console.error("Error while deleting book",error)
+        toast.error(error.response.data?.message)
+      })
+    }
+
+    const openEditBook = (book) => {
+      setSelectedBookObj(book);
+      setOpenBookPopUp(true);
+      setEditBook(true);
+    }
   return (
     <>
         <div className='h-auto max-h-[80vh] w-full overflow-hidden overflow-y-auto'> 
@@ -50,7 +85,7 @@ function BooksRenderer() {
               >
                 <span className='w-[35vw] text-wrap ml-2 mr-2'>{book.title}</span>
                 <span className='w-[10vw] text-wrap'>{book.average_rating}</span>
-                <span className='w-[20vw] text-wrap mx-2'>{book.authors}</span>
+                <span className='w-[15vw] text-wrap mx-2'>{book.authors}</span>
                 <span className='w-[15vw] text-wrap mx-2'>{book.publisher}</span>
                 <span className='w-[10vw] text-wrap'>{book.copies_available}</span>
                 <span className='w-[10vw] font-bold cursor-pointer'
@@ -58,6 +93,19 @@ function BooksRenderer() {
                 >
                   <IoArrowForwardCircleOutline className='size-7' />
                 </span>
+                <Button onClick={() => deleteBook(book)}  
+                >
+                  <MdDelete
+                    className='size-7 cursor-pointer'
+                  />
+                </Button>
+                <Button 
+                onClick={() => openEditBook(book)}
+                >
+                  <MdEdit
+                    className='size-7 cursor-pointer'
+                  />
+                </Button>
               </div>      
             ))}  
         </div>

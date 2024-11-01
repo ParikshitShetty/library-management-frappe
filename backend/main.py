@@ -16,15 +16,20 @@ from controllers.booksControllers.searchBooksController import search_router
 from controllers.booksControllers.issueBookController import issue_book_router
 from controllers.booksControllers.returnBookController import return_book_router
 from controllers.booksControllers.api.getBooksFromApiController import getBooksFromApi_router
-from controllers.booksControllers.listBooksController import list_books_router
+# Books CRUD
+from controllers.booksControllers.crud.listBooksController import list_books_router
+from controllers.booksControllers.crud.deleteBooksController import delete_books_router
+from controllers.booksControllers.crud.updateBooksController import update_books_router
+from controllers.booksControllers.crud.addBooksController import add_books_router
 
 from controllers.transactionsControllers.listTransactionsController import list_transactions_router
 
 from controllers.membersControllers.membersWithIssuedBooks import member_with_issued_books_router
-from controllers.membersControllers.listMembersController import list_members_router
-from controllers.membersControllers.addMembersController import add_members_router
-from controllers.membersControllers.deleteMembersController import delete_members_router
-from controllers.membersControllers.updateMembersController import update_members_router
+# Members CRUD
+from controllers.membersControllers.crud.listMembersController import list_members_router
+from controllers.membersControllers.crud.addMembersController import add_members_router
+from controllers.membersControllers.crud.deleteMembersController import delete_members_router
+from controllers.membersControllers.crud.updateMembersController import update_members_router
 
 create_database()
 
@@ -59,6 +64,9 @@ app.include_router(issue_book_router)
 app.include_router(return_book_router)
 app.include_router(getBooksFromApi_router)
 app.include_router(list_books_router)
+app.include_router(add_books_router)
+app.include_router(delete_books_router)
+app.include_router(update_books_router)
 
 # Transactions Controllers
 app.include_router(list_transactions_router)

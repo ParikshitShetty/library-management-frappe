@@ -4,6 +4,7 @@ from sqlalchemy import create_engine, Column, Integer, String
 from sqlalchemy.orm import sessionmaker, Session
 from sqlalchemy.ext.declarative import declarative_base
 from pydantic import BaseModel
+from sqlalchemy import event
 
 # Logging configuration
 logging.basicConfig(level=logging.INFO)
@@ -19,6 +20,12 @@ if not DATABASE_URL:
 engine = create_engine(DATABASE_URL,connect_args={"check_same_thread": False})
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
+
+@event.listens_for(engine, "connect")
+def set_sqlite_pragma(dbapi_connection, connection_record):
+    cursor = dbapi_connection.cursor()
+    cursor.execute("PRAGMA foreign_keys=ON")
+    cursor.close()
 
 # Create all tables
 def create_database():

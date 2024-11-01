@@ -5,6 +5,9 @@ export const endpoints = {
         get_books : import.meta.env.VITE_GET_BOOKS_URL,
         issue_book : import.meta.env.VITE_ISSUE_BOOK_URL,
         return_book : import.meta.env.VITE_RETURN_BOOK_URL,
+        delete_books : import.meta.env.VITE_DELETE_BOOKS_URL,
+        update_books : import.meta.env.VITE_UPDATE_BOOKS_URL,
+        add_books : import.meta.env.VITE_ADD_BOOKS_URL,
     },
     members : {
         get_members : import.meta.env.VITE_GET_MEMBERS_URL,
