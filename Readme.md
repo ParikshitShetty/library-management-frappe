@@ -67,6 +67,7 @@ The following use cases are implemented within the application:
    ```bash
    docker compose up --build -d
    ```
+- Note: Please chnage the volume mapping of the library.db file to to your current_working_directory/backend/library.db in volumes sections of the docker-compose.yml
 
 ## Usage
 
