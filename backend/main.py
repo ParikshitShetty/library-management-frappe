@@ -38,6 +38,8 @@ app = FastAPI()
 origins = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://library-management-frappe.vercel.app",
+    "https://library-manageme-git-24ed74-parikshit-shettys-projects-7026150a.vercel.app",
 ]
 
 app.add_middleware(
