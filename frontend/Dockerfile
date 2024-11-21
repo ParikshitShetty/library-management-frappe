@@ -14,8 +14,11 @@ RUN npm install
 # Copy the folder
 COPY . .
 
-# Expose the app
-EXPOSE 5173
+# create the build version
+RUN npm run build
 
-# Run the server
-CMD [ "npm", "run", "dev"]
+# Expose the app
+EXPOSE 4173
+
+# Run the prod server
+CMD [ "npm", "run", "preview" ]

@@ -13,7 +13,7 @@ class RequestData(BaseModel):
 return_book_router = APIRouter()
 
 @return_book_router.post("/return_book")
-async def issue_Book(request: RequestData):
+async def return_Book(request: RequestData):
     db_generator = get_db()
     db = next(db_generator)
     try:
