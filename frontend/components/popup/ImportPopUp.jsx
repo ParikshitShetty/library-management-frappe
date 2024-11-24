@@ -2,14 +2,20 @@ import React, { useState } from 'react'
 import { Box, Dialog, DialogTitle, TextField, Button } from '@mui/material';
 import axios from 'axios';
 import toast from 'react-hot-toast';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 // Constants
 import { endpoints } from '@/constants/endpoints';
 // Global States
-import { openImportPopUpAtom } from '@/store/store';
+import { 
+    booksArrayAtom, 
+    openImportPopUpAtom } from '@/store/store';
+// Services
+import getBooksService from '@/services/api/getBooksService';
 
 export default function ImportPopUp({handleClose}) {
     const [openImportPopUp,setOpenImportPopUp] = useAtom(openImportPopUpAtom);
+
+    const setBooks = useSetAtom(booksArrayAtom);
 
     const [searchText,setSearchText] = useState('');
     const [count,setCount] = useState(0);
@@ -33,9 +39,11 @@ export default function ImportPopUp({handleClose}) {
             "count": count
         }
         setLoading(true);
-        axios.post(url,body).then(function (response) {
+        axios.post(url,body).then(async function (response) {
             console.log("response",response.data?.message);
             toast.success(response.data?.message);
+            const updated_books = await getBooksService();
+            setBooks(updated_books);
         }).catch(function (error) {
             console.log("Error while fetching data",error);
             toast.error(error.response?.data?.message);

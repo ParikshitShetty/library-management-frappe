@@ -30,7 +30,7 @@ function MembersRenderer() {
 
     const searchText = useAtomValue(searchTextAtom);
 
-    const renderRef = useRef(false);
+    // const renderRef = useRef(false);
 
     const [filteredMembers,setFilteredMembers] = useState([]);
 
@@ -51,10 +51,6 @@ function MembersRenderer() {
     const [deleteLoading,setDeleteLoading] = useState(false);
 
     useEffect(() => {
-        if (!renderRef.current) {
-            renderRef.current = true;
-            return
-        }
         const searchResults = searchMembers({ members, searchText })
         setFilteredMembers(searchResults)
     },[searchText,members])
